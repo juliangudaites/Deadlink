@@ -14,3 +14,6 @@ Send it once. Then it's gone.
 | `BITCOIN_TIP_ADDRESS` | Optional | BTC address for tier payments |
 | `FREE_CREATES_PER_DAY` | Optional | Default `3` |
 | `PORT` | Optional | Default `3001` |
+| `VITE_PLAUSIBLE_DOMAIN` | Optional | Analytics (build-time) |
+| `VITE_GA4_MEASUREMENT_ID` | Optional | Google Analytics 4 (build-time) |
+| `VITE_PUBLIC_SITE_URL` | Optional | Canonical URL for SEO |

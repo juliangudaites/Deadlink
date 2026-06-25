@@ -1,0 +1,46 @@
+DEADLINK — Analytics & SEO setup
+=================================
+
+ANALYTICS (one dashboard for both sites)
+----------------------------------------
+Recommended: Plausible.io — privacy-friendly, countries, referrers, devices.
+Optional: Google Analytics 4 — age/gender/interests (needs cookie banner in EU).
+
+1. Create account at https://plausible.io
+2. Add two sites:
+   - deadlink.onrender.com
+   - fluxgrid.onrender.com
+3. On Render → deadlink service → Environment:
+   VITE_PLAUSIBLE_DOMAIN=deadlink.onrender.com
+4. On Render → fluxgrid service → Environment:
+   VITE_PLAUSIBLE_DOMAIN=fluxgrid.onrender.com
+5. Redeploy both (Vite bakes env at build time)
+
+Optional GA4:
+   VITE_GA4_MEASUREMENT_ID=G-XXXXXXXXXX
+   (Create two GA4 properties or one property with two web streams)
+
+GOOGLE SEARCH CONSOLE
+---------------------
+1. https://search.google.com/search-console
+2. Add property: https://deadlink.onrender.com
+3. Verify via HTML tag or DNS when you have custom domain
+4. Submit sitemap: https://deadlink.onrender.com/sitemap.xml
+
+SEO PAGES LIVE
+--------------
+/learn/privnote-alternative
+/learn/one-time-secret-link
+/learn/send-password-securely
+/learn/burn-after-reading
+/learn/vs-onetimesecret
+/learn/security
+
+AUTHORITY FAST (your manual checklist)
+--------------------------------------
+□ Submit sitemap to Google & Bing Webmaster Tools
+□ List on AlternativeTo, Product Hunt, Hacker News Show
+□ Post comparison guides linking to /learn/* pages
+□ Cross-link from FLUXGRID ↔ DEADLINK (already in guides)
+□ Add 1200×630 og-image.png to /client/public/brand/ when ready
+□ Custom domain + SSL improves trust (optional)

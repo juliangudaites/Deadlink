@@ -419,3 +419,80 @@
   .dl-steps { grid-template-columns: 1fr; }
   .dl-nav button { font-size: 0.6rem; padding: 10px 10px; }
 }
+
+.dl-seo-home {
+  max-width: 640px;
+  margin: var(--space-6) auto 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.dl-seo-home summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+}
+
+.dl-seo-home__links {
+  list-style: none;
+  margin: var(--space-3) 0;
+}
+
+.dl-seo-home__links a {
+  color: var(--neon-cyan);
+  line-height: 1.8;
+}
+
+.dl-seo-article {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-bottom: var(--space-6);
+  line-height: 1.55;
+}
+
+.dl-seo-article h1 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-4);
+  color: var(--neon-cyan);
+}
+
+.dl-seo-article h2 {
+  font-size: 0.95rem;
+  margin: var(--space-4) 0 var(--space-2);
+  color: var(--text-primary);
+}
+
+.dl-seo-article p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.dl-seo-faq__item h3 {
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  margin-top: var(--space-3);
+}
+
+.dl-seo-related ul {
+  list-style: none;
+  margin-top: var(--space-2);
+}
+
+.dl-seo-related a {
+  color: var(--neon-cyan);
+  line-height: 1.8;
+}
+
+.dl-seo-sister {
+  margin-top: var(--space-4);
+  font-size: 0.85rem;
+}
+
+.dl-seo-sister a {
+  color: var(--neon-magenta);
+}

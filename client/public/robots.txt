@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /learn/
+Disallow: /admin
+Disallow: /api/
+Disallow: /v/
+
+Sitemap: https://deadlink.onrender.com/sitemap.xml

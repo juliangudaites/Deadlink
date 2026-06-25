@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { initAnalytics, trackPageView } from './utils/analytics';
+import { useSeo } from './seo/useSeo';
+import { SITE } from './seo/site';
+import { SeoLearnPage } from './seo/SeoLearnPage';
+import { SeoHomeSection } from './seo/SeoHomeSection';
 import { CreateForm } from './components/CreateForm';
 import { ViewPage } from './components/ViewPage';
 import { PlansPanel } from './components/PlansPanel';
@@ -17,15 +22,48 @@ import type { TierId } from './tiers/tiers';
 function useRoute() {
   const [path, setPath] = useState(window.location.pathname);
   useEffect(() => {
+    initAnalytics();
     const onPop = () => setPath(window.location.pathname);
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
+  useEffect(() => {
+    trackPageView(path + window.location.search, document.title);
+  }, [path]);
   return path;
 }
 
+const HOME_FAQ_LD = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      name: 'DEADLINK',
+      url: SITE.url,
+      applicationCategory: 'SecurityApplication',
+      operatingSystem: 'Web',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      description: SITE.defaultDescription,
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'What is DEADLINK?', acceptedAnswer: { '@type': 'Answer', text: 'A one-time secret link service. Share a URL, recipient views once, then the secret is destroyed.' } },
+        { '@type': 'Question', name: 'Is DEADLINK free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — 3 links per day per IP without an account.' } },
+        { '@type': 'Question', name: 'Are secrets encrypted?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. AES-256-GCM at rest, HTTPS in transit, deleted on burn.' } },
+      ],
+    },
+  ],
+};
+
 function Landing() {
   const { caps } = useTier();
+  useSeo({
+    title: SITE.defaultTitle,
+    description: SITE.defaultDescription,
+    path: '/',
+    jsonLd: HOME_FAQ_LD,
+  });
   const [created, setCreated] = useState<{ url: string; warning: string } | null>(null);
   const [copied, setCopied] = useState(false);
   const [plansOpen, setPlansOpen] = useState(false);
@@ -96,6 +134,7 @@ function Landing() {
         <CreateForm onCreated={setCreated} />
       )}
 
+      <SeoHomeSection />
       <LegalFooter onFaq={() => setFaqOpen(true)} onTerms={() => setLegal('terms')} onPrivacy={() => setLegal('privacy')} />
 
       <PlansPanel open={plansOpen} onClose={() => setPlansOpen(false)} onBuyTier={(id, priceUsd, name) => { setPlansOpen(false); setPayTier({ id, name, priceUsd }); }} />
@@ -110,16 +149,31 @@ function Landing() {
   );
 }
 
+function ViewRoute({ slug }: { slug: string }) {
+  useSeo({
+    title: 'View secret — DEADLINK',
+    description: 'One-time secret link viewer.',
+    path: `/v/${slug}`,
+    noindex: true,
+  });
+  return <ViewPage slug={slug} />;
+}
+
 export default function App() {
   const path = useRoute();
-  const viewMatch = path.match(/^\/v\/([a-zA-Z0-9-]+)$/);
+  const learnMatch = path.match(/^\/learn\/([a-z0-9-]+)$/);
+  const viewMatch = path.match(/^\/v\/([a-zA-Z0-9_-]+)$/);
 
   if (path === '/admin' || path.startsWith('/admin/')) {
     return <AdminPortal />;
   }
 
+  if (learnMatch) {
+    return <SeoLearnPage slug={learnMatch[1]} />;
+  }
+
   if (viewMatch) {
-    return <ViewPage slug={viewMatch[1]} />;
+    return <ViewRoute slug={viewMatch[1]} />;
   }
 
   return <Landing />;

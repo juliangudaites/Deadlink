@@ -35,3 +35,31 @@ Stripe Dashboard → Webhooks → Add endpoint:
 
 Test: https://deadlink.onrender.com
 Admin: https://deadlink.onrender.com/admin
+
+────────────────────────────────────────────
+FIX: white screen / {"message":"Server is running good"}
+────────────────────────────────────────────
+That JSON is NOT DEADLINK — Render is running a placeholder app.
+
+Quick check after fix:
+  https://deadlink.onrender.com/api/health
+  → must show: {"status":"ok","service":"DEADLINK",...}
+  NOT "Cannot GET /api/health"
+
+Option A — fix existing service (fastest):
+  Render Dashboard → your deadlink service → Settings
+    Repository: juliangudaites/Deadlink
+    Branch: main
+    Root Directory: (leave BLANK — repo root, not "server")
+    Build Command:
+      npm install --prefix server && npm install --prefix client --include=dev && npm run build --prefix client
+    Start Command:
+      node server/src/index.js
+    Health Check Path: /api/health
+  → Manual Deploy → Deploy latest commit
+  → Wait ~8 min, then test /api/health
+
+Option B — clean redeploy (if Option A still shows wrong JSON):
+  Delete the old deadlink web service on Render
+  New + → Blueprint → select juliangudaites/Deadlink repo
+  Set ADMIN_PIN and ENCRYPTION_KEY when prompted → Apply

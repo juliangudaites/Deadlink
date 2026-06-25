@@ -40,11 +40,21 @@ app.use('/api/admin', adminRouter);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const clientDist = path.resolve(__dirname, '../../client/dist');
-if (existsSync(clientDist)) {
+const clientBuilt = existsSync(clientDist);
+if (clientBuilt) {
   app.use(express.static(clientDist, { maxAge: process.env.NODE_ENV === 'production' ? '1h' : 0 }));
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api')) return next();
     res.sendFile(path.join(clientDist, 'index.html'));
+  });
+} else {
+  app.get('/', (_req, res) => {
+    res.status(503).json({
+      status: 'error',
+      service: 'DEADLINK',
+      error: 'Frontend not built — run npm run build --prefix client during deploy',
+      clientDist,
+    });
   });
 }
 

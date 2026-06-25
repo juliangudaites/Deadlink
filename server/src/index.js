@@ -1,3 +1,6 @@
+import path from 'path';
+import { existsSync } from 'fs';
+import { fileURLToPath } from 'url';
 import app from './app.js';
 import { config } from './config.js';
 import { purgeExpiredLinks } from './db/links.js';
@@ -16,8 +19,10 @@ process.on('SIGINT', () => { flushAllStores(); process.exit(0); });
 process.on('SIGTERM', () => { flushAllStores(); process.exit(0); });
 
 const bitcoinOn = Boolean(config.bitcoinTipAddress);
+const clientDist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../client/dist');
 app.listen(config.port, () => {
   console.log(`DEADLINK API running on http://localhost:${config.port}`);
+  console.log(`Frontend build: ${existsSync(clientDist) ? 'OK' : 'MISSING'} (${clientDist})`);
   console.log(`Production: https://deadlink.onrender.com`);
   console.log(`Admin portal: /admin`);
   console.log(`Bitcoin: ${bitcoinOn ? 'ENABLED' : 'disabled'}`);

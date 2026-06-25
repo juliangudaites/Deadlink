@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <rect width="120" height="120" rx="16" fill="#0a0a12"/>
+  <path d="M30 60 L60 30 L90 60 L60 90 Z" stroke="#00f0ff" stroke-width="3" fill="none"/>
+  <circle cx="60" cy="60" r="8" fill="#ff00aa"/>
+  <text x="60" y="108" text-anchor="middle" fill="#00f0ff" font-family="monospace" font-size="10">DEADLINK</text>
+</svg>

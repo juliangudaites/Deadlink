@@ -1,0 +1,57 @@
+DEADLINK AFFILIATE PROGRAM — TERMS & CONDITIONS
+================================================
+Effective: 2026 · Program operated by DEADLINK
+
+By joining or promoting DEADLINK as an affiliate, you agree to these terms.
+
+────────────────────────────────────────────
+1. PROGRAM OVERVIEW
+────────────────────────────────────────────
+DEADLINK is a one-time secret link service for lawful private sharing.
+Affiliates earn commission when referred users purchase paid tiers
+(SHADOW, VOID, or SPECTRE) through tracked card/Stripe checkout.
+
+Official site: https://deadlink.onrender.com
+
+────────────────────────────────────────────
+2. ELIGIBILITY
+────────────────────────────────────────────
+• You must be 18 years or older.
+• You may not promote DEADLINK for illegal content distribution.
+• DEADLINK may reject or remove any affiliate at any time.
+
+────────────────────────────────────────────
+3. COMMISSION
+────────────────────────────────────────────
+• Standard commission: 30% of each qualifying paid tier sale.
+• Qualifying sales: SHADOW ($19), VOID ($49), SPECTRE ($199) per 30-day key.
+• Card/Stripe sales: tracked via Endorsely.
+• Bitcoin tier sales: not auto-tracked unless agreed in writing.
+• Chargebacks and refunds void commission on that sale.
+
+────────────────────────────────────────────
+4. ATTRIBUTION
+────────────────────────────────────────────
+• Affiliate links use Endorsely (?via=) and ?ref= for Affiliate.Watch.
+• Self-referrals prohibited.
+• Click fraud and cookie stuffing prohibited.
+
+────────────────────────────────────────────
+5. PAYOUTS
+────────────────────────────────────────────
+• Processed through Endorsely per their schedule.
+• You are responsible for taxes on affiliate income.
+
+────────────────────────────────────────────
+6. PROHIBITED PROMOTION
+────────────────────────────────────────────
+You may NOT promote DEADLINK as:
+• A tool for sharing CSAM, malware, or illegal material
+• A way to evade law enforcement for criminal activity
+• Guaranteed permanent anonymity against all legal process
+
+────────────────────────────────────────────
+7. CONTACT
+────────────────────────────────────────────
+Affiliate support via your Endorsely dashboard.
+Site: https://deadlink.onrender.com

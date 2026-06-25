@@ -1,0 +1,37 @@
+DEADLINK on Render — 3 steps only YOU can do
+=============================================
+
+Permanent link: https://deadlink.onrender.com
+
+────────────────────────────────────────────
+1. GitHub — create empty repo
+────────────────────────────────────────────
+https://github.com/new
+  Name: deadlink
+  Leave EMPTY (no README)
+  Create repository
+
+Then push:
+  cd C:\Users\julia\deadlink
+  git remote add origin https://github.com/YOUR_USERNAME/deadlink.git
+  git branch -M main
+  git push -u origin main
+
+────────────────────────────────────────────
+2. Render — Blueprint deploy
+────────────────────────────────────────────
+https://render.com → New + → Blueprint
+  Select repo: deadlink
+  Set env vars when prompted (see README.md)
+  Apply → wait ~8 min
+
+────────────────────────────────────────────
+3. Stripe webhook
+────────────────────────────────────────────
+Stripe Dashboard → Webhooks → Add endpoint:
+  URL: https://deadlink.onrender.com/api/stripe/webhook
+  Event: checkout.session.completed
+  Copy signing secret → STRIPE_WEBHOOK_SECRET on Render
+
+Test: https://deadlink.onrender.com
+Admin: https://deadlink.onrender.com/admin

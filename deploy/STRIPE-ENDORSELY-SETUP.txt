@@ -1,0 +1,30 @@
+DEADLINK — Stripe + Endorsely setup
+====================================
+
+STRIPE
+------
+1. https://dashboard.stripe.com → Developers → API keys
+2. Copy Secret key → STRIPE_SECRET_KEY on Render
+3. Webhook: https://deadlink.onrender.com/api/stripe/webhook
+   Event: checkout.session.completed
+4. Copy signing secret → STRIPE_WEBHOOK_SECRET on Render
+5. Use test keys first (sk_test_ / whsec_)
+
+ENDORSELY
+---------
+1. https://endorsely.com — connect Stripe account
+2. Script already in client/index.html:
+   data-endorsely="a9b2eae1-1ee6-41c2-9f11-6acd1c3e4927"
+3. Affiliate links use ?via=yourname
+4. endorsely_referral passed to Stripe metadata automatically
+
+AFFILIATE.WATCH
+---------------
+Launch script in index.html:
+  data-launch-id="p28AAWnbRB4N3P2n"
+?ref= captured for Stripe metadata (affiliate_ref)
+
+TIERS (test mode)
+-----------------
+SHADOW $19 · VOID $49 · SPECTRE $199
+Card checkout → DL-SHAD-/DL-VOID-/DL-SPEC- access key

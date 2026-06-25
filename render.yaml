@@ -1,0 +1,28 @@
+# DEADLINK on Render — permanent URL: https://deadlink.onrender.com
+services:
+  - type: web
+    name: deadlink
+    runtime: node
+    plan: free
+    buildCommand: npm install --prefix server && npm install --prefix client --include=dev && npm run build --prefix client
+    startCommand: node server/src/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: PUBLIC_APP_URL
+        value: https://deadlink.onrender.com
+      - key: FREE_CREATES_PER_DAY
+        value: "3"
+      - key: ADMIN_PIN
+        sync: false
+      - key: ENCRYPTION_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: BITCOIN_TIP_ADDRESS
+        sync: false

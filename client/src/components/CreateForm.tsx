@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { createLink } from '../api';
+import { trackEvent } from '../utils/analytics';
 import { useTier } from '../tiers/context';
 
 const BURN_OPTIONS = [
@@ -46,6 +47,7 @@ export function CreateForm({ onCreated }: CreateFormProps) {
         return;
       }
       const result = await createLink(fd);
+      trackEvent('create_submit', { type: tab, burn: burnMode });
       onCreated({ url: result.url, warning: result.warning });
       setText('');
       setFile(null);
@@ -77,7 +79,9 @@ export function CreateForm({ onCreated }: CreateFormProps) {
             onChange={(e) => setText(e.target.value.slice(0, caps.maxTextChars))}
             placeholder="Password, key, message…"
             maxLength={caps.maxTextChars}
+            aria-describedby="char-count"
           />
+          <span id="char-count" className="dl-char-count">{text.length} / {caps.maxTextChars}</span>
         </div>
       ) : (
         <div className="dl-field">

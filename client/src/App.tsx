@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { initAnalytics, trackPageView } from './utils/analytics';
+import { initAnalytics, trackEvent, trackPageView } from './utils/analytics';
+import { ShareButtons } from './components/ShareButtons';
+import { TrustStrip } from './components/TrustStrip';
+import { SeoLearnIndex } from './seo/SeoLearnIndex';
 import { useSeo } from './seo/useSeo';
 import { SITE } from './seo/site';
 import { SeoLearnPage } from './seo/SeoLearnPage';
@@ -37,13 +40,31 @@ const HOME_FAQ_LD = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'Organization',
+      name: 'DEADLINK',
+      url: SITE.url,
+      logo: `${SITE.url}/brand/logo.svg`,
+      sameAs: [SITE.sisterSite.url],
+    },
+    {
       '@type': 'WebApplication',
       name: 'DEADLINK',
       url: SITE.url,
       applicationCategory: 'SecurityApplication',
       operatingSystem: 'Web',
+      browserRequirements: 'Requires JavaScript',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       description: SITE.defaultDescription,
+    },
+    {
+      '@type': 'HowTo',
+      name: 'How to create a one-time secret link',
+      description: 'Create an encrypted dead link that burns after one view.',
+      step: [
+        { '@type': 'HowToStep', name: 'Paste or upload', text: 'Enter your secret text or upload a small file.' },
+        { '@type': 'HowToStep', name: 'Choose burn mode', text: 'Burn on first view or set a timer.' },
+        { '@type': 'HowToStep', name: 'Share the link', text: 'Copy the URL and send it once. You cannot view it again.' },
+      ],
     },
     {
       '@type': 'FAQPage',
@@ -51,6 +72,7 @@ const HOME_FAQ_LD = {
         { '@type': 'Question', name: 'What is DEADLINK?', acceptedAnswer: { '@type': 'Answer', text: 'A one-time secret link service. Share a URL, recipient views once, then the secret is destroyed.' } },
         { '@type': 'Question', name: 'Is DEADLINK free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — 3 links per day per IP without an account.' } },
         { '@type': 'Question', name: 'Are secrets encrypted?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. AES-256-GCM at rest, HTTPS in transit, deleted on burn.' } },
+        { '@type': 'Question', name: 'Privnote alternative?', acceptedAnswer: { '@type': 'Answer', text: 'DEADLINK offers files, timers, passwords, and a modern mobile UI.' } },
       ],
     },
   ],
@@ -62,6 +84,7 @@ function Landing() {
     title: SITE.defaultTitle,
     description: SITE.defaultDescription,
     path: '/',
+    keywords: SITE.keywords,
     jsonLd: HOME_FAQ_LD,
   });
   const [created, setCreated] = useState<{ url: string; warning: string } | null>(null);
@@ -91,8 +114,13 @@ function Landing() {
     if (!created) return;
     await navigator.clipboard.writeText(created.url);
     setCopied(true);
+    trackEvent('copy_link');
     setTimeout(() => setCopied(false), 2000);
   };
+
+  useEffect(() => {
+    if (created) trackEvent('link_created');
+  }, [created]);
 
   return (
     <div className="dl-page">
@@ -118,6 +146,7 @@ function Landing() {
         {caps.label !== 'FREE' && (
           <p style={{ fontSize: '0.8rem', color: 'var(--neon-cyan)', marginBottom: 12 }}>Tier: {caps.label}</p>
         )}
+        <TrustStrip />
       </section>
 
       {created ? (
@@ -126,6 +155,8 @@ function Landing() {
           <code className="dl-success__url">{created.url}</code>
           <p className="dl-success__warn">{created.warning}</p>
           <button type="button" className="dl-copy-btn" onClick={copyUrl}>{copied ? 'COPIED ✓' : 'COPY LINK'}</button>
+          <ShareButtons url={created.url} />
+          <p className="dl-success__hint">Send via a different channel than the password (if set).</p>
           <button type="button" style={{ color: 'var(--text-secondary)', minHeight: 44 }} onClick={() => setCreated(null)}>
             Create another
           </button>
@@ -166,6 +197,10 @@ export default function App() {
 
   if (path === '/admin' || path.startsWith('/admin/')) {
     return <AdminPortal />;
+  }
+
+  if (path === '/learn') {
+    return <SeoLearnIndex />;
   }
 
   if (learnMatch) {

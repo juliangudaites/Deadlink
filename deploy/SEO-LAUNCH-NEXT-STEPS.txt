@@ -1,0 +1,57 @@
+DEADLINK — SEO & viral launch (do these in order)
+==================================================
+
+DONE IN CODE
+------------
+✓ 10 SEO guide pages + /learn index
+✓ sitemap.xml, robots.txt, manifest, humans.txt
+✓ JSON-LD: Organization, WebApplication, HowTo, FAQ, Article, Breadcrumb
+✓ OG image, keywords, canonical tags
+✓ Google Analytics G-X1YHBZ5FN3
+✓ Viral share: WhatsApp, Telegram, X, Email, native share
+✓ Trust strip, burned-page CTA, analytics events
+
+YOUR NEXT 7 STEPS (authority fast)
+----------------------------------
+
+1. GITHUB + RENDER (today)
+   cd C:\Users\julia\deadlink
+   git remote add origin https://github.com/juliangudaites/deadlink.git
+   git branch -M main
+   git push -u origin main
+   Render → Blueprint or manual deploy from repo
+
+2. GOOGLE SEARCH CONSOLE (day 1)
+   https://search.google.com/search-console
+   Add property: deadlink.onrender.com
+   Submit sitemap: https://deadlink.onrender.com/sitemap.xml
+   Request indexing for / and /learn/privnote-alternative
+
+3. BING WEBMASTER (day 1)
+   https://www.bing.com/webmasters
+   Same sitemap — often indexes within 48h
+
+4. DIRECTORY LISTINGS (week 1)
+   • AlternativeTo — "Privnote alternative"
+   • Product Hunt launch (Tuesday–Thursday)
+   • Hacker News — Show HN post with demo GIF
+   • Slant.co / SaaSHub — one-time secret category
+
+5. CONTENT VELOCITY (week 1–2)
+   Post 3 short videos (15s): create → share → burn in incognito
+   Pin link in Reddit r/privacy, r/crypto, r/sysadmin (follow rules, no spam)
+   Answer Quora: "how to send password securely"
+
+6. BACKLINKS (week 2)
+   Guest comment on privacy blogs with /learn/privnote-alternative
+   Cross-link from FLUXGRID footer (already in guides)
+   Affiliate recruits share ?via= links (Endorsely)
+
+7. CUSTOM DOMAIN (when ready — big trust boost)
+   deadlink.io or similar → update VITE_PUBLIC_SITE_URL + sitemap URLs
+
+METRICS TO WATCH (GA4)
+----------------------
+• link_created, copy_link, share_whatsapp, share_telegram
+• Landing → create conversion
+• Organic search → /learn/* pages

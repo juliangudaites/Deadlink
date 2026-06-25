@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://deadlink.onrender.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://deadlink.onrender.com/learn/privnote-alternative</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://deadlink.onrender.com/learn/one-time-secret-link</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn/privnote-alternative</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn/one-time-secret-link</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn/self-destructing-message</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://deadlink.onrender.com/learn/send-password-securely</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://deadlink.onrender.com/learn/burn-after-reading</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://deadlink.onrender.com/learn/vs-onetimesecret</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://deadlink.onrender.com/learn/security</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn/share-api-key-securely</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn/burn-after-reading</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn/vs-onetimesecret</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn/crypto-seed-phrase-sharing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn/journalist-secure-tip</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://deadlink.onrender.com/learn/security</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
 </urlset>

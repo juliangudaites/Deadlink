@@ -22,10 +22,19 @@ export function SeoLearnPage({ slug }: SeoLearnPageProps) {
     '@context': 'https://schema.org',
     '@graph': [
       {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'DEADLINK', item: SITE.url },
+          { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE.url}/learn` },
+          { '@type': 'ListItem', position: 3, name: page.h1, item: `${SITE.url}/learn/${page.slug}` },
+        ],
+      },
+      {
         '@type': 'Article',
         headline: page.h1,
         description: page.description,
         url: `${SITE.url}/learn/${page.slug}`,
+        dateModified: '2026-06-25',
         publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
       },
       {
@@ -77,6 +86,9 @@ export function SeoLearnPage({ slug }: SeoLearnPageProps) {
         <p className="dl-seo-sister">
           Also see <a href={SITE.sisterSite.url}>{SITE.sisterSite.name}</a> — {SITE.sisterSite.blurb}.
         </p>
+        <div className="dl-seo-cta">
+          <a href="/" className="dl-cta dl-seo-cta__btn">CREATE DEAD LINK FREE →</a>
+        </div>
         <nav className="dl-seo-related">
           <h2>Related</h2>
           <ul>

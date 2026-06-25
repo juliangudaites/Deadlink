@@ -7,6 +7,7 @@ export interface SeoConfig {
   path: string;
   noindex?: boolean;
   type?: 'website' | 'article';
+  keywords?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -47,18 +48,20 @@ export function useSeo(config: SeoConfig) {
     const url = `${SITE.url}${config.path}`;
     document.title = config.title;
     setMeta('description', config.description);
-    setMeta('robots', config.noindex ? 'noindex, nofollow' : 'index, follow');
+    if (config.keywords) setMeta('keywords', config.keywords);
+    setMeta('robots', config.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large');
     setCanonical(url);
     setMeta('og:title', config.title, 'property');
     setMeta('og:description', config.description, 'property');
     setMeta('og:url', url, 'property');
     setMeta('og:type', config.type || 'website', 'property');
-    setMeta('og:image', `${SITE.url}/brand/logo.svg`, 'property');
+    setMeta('og:image', `${SITE.url}${SITE.ogImage}`, 'property');
+    setMeta('og:image:alt', `${SITE.name} — ${SITE.tagline}`, 'property');
     setMeta('og:site_name', SITE.name, 'property');
     setMeta('twitter:card', 'summary_large_image', 'name');
     setMeta('twitter:title', config.title, 'name');
     setMeta('twitter:description', config.description, 'name');
-    setMeta('twitter:image', `${SITE.url}/brand/logo.svg`, 'name');
+    setMeta('twitter:image', `${SITE.url}${SITE.ogImage}`, 'name');
     setJsonLd(config.jsonLd);
   }, [config.title, config.description, config.path, config.noindex, config.type, config.jsonLd]);
 }

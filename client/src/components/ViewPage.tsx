@@ -73,7 +73,12 @@ export function ViewPage({ slug }: ViewPageProps) {
   };
 
   if (status === 'loading') {
-    return <div className="dl-view"><p>Loading…</p></div>;
+    return (
+      <div className="dl-view dl-view--loading">
+        <div className="dl-spinner" aria-label="Loading" />
+        <p>Checking link…</p>
+      </div>
+    );
   }
 
   if (status === 'burned') {
@@ -82,7 +87,8 @@ export function ViewPage({ slug }: ViewPageProps) {
         <img src="/brand/logo.svg" alt="" width={64} height={64} style={{ opacity: 0.4, marginBottom: 16 }} />
         <h2>THIS DEAD LINK HAS VANISHED</h2>
         <p style={{ color: 'var(--text-muted)' }}>Viewed, expired, or destroyed. No copy exists.</p>
-        <a href="/" style={{ color: 'var(--neon-cyan)', marginTop: 24, display: 'inline-block', minHeight: 44, lineHeight: '44px' }}>← Create new link</a>
+        <p style={{ color: 'var(--text-secondary)', marginTop: 16, fontSize: '0.9rem' }}>Need to send a secret that burns after one view?</p>
+        <a href="/" className="dl-cta dl-view__cta">CREATE YOUR DEAD LINK</a>
       </div>
     );
   }

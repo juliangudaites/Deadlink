@@ -45,7 +45,7 @@ export function trackEvent(name: string, props?: Record<string, string | number>
     window.plausible(name, { props });
   }
   if (hasGtag()) {
-    window.gtag!(name, props);
+    window.gtag!('event', name, props);
   }
 }
 

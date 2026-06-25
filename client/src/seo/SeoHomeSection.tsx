@@ -15,6 +15,7 @@ export function SeoHomeSection() {
           {guides.map((g) => (
             <li key={g.slug}><a href={`/learn/${g.slug}`}>{g.h1}</a></li>
           ))}
+          <li><a href="/learn">All guides →</a></li>
           <li><a href="/learn/security">Security overview</a></li>
         </ul>
         <p className="dl-seo-home__sister">

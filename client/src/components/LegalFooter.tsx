@@ -9,6 +9,7 @@ export function LegalFooter({ onTerms, onPrivacy, onFaq }: LegalFooterProps) {
     <footer className="dl-footer">
       <p>DEADLINK · Send it once. Then it&apos;s gone.</p>
       <p style={{ marginTop: 8 }}>
+        <a href="/learn" style={{ color: 'var(--text-secondary)', marginRight: 8 }}>Guides</a>
         <button type="button" onClick={onFaq}>FAQ</button>
         {' · '}
         <button type="button" onClick={onTerms}>Terms</button>

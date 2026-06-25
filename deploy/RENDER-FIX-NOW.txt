@@ -1,0 +1,73 @@
+DEADLINK IS NOT DEPLOYED — FIX IN 5 MINUTES
+===========================================
+
+You see:  {"message":"Server is running good"}
+That is a Render PLACEHOLDER app — NOT your DEADLINK code.
+
+Proof: https://deadlink.onrender.com/api/health → "Cannot GET /api/health"
+Real DEADLINK always has /api/health with "service":"DEADLINK".
+
+YOU MUST DELETE THE OLD SERVICE AND RECREATE IT.
+Editing settings on the wrong service will NOT fix this.
+
+══════════════════════════════════════════════
+STEP 1 — Delete the broken service
+══════════════════════════════════════════════
+1. Go to https://dashboard.render.com
+2. Click your "deadlink" web service
+3. Settings → scroll to bottom → Delete Web Service
+4. Type the service name to confirm → Delete
+
+══════════════════════════════════════════════
+STEP 2 — Deploy from GitHub (Blueprint)
+══════════════════════════════════════════════
+1. Click "New +" (top right)
+2. Choose "Blueprint"
+3. Connect GitHub if asked
+4. Select repo: juliangudaites/Deadlink
+5. Render reads render.yaml automatically
+6. When prompted, set these TWO required secrets:
+     ADMIN_PIN        = pick a strong PIN (e.g. 8+ digits)
+     ENCRYPTION_KEY   = long random passphrase (32+ chars)
+7. Click "Apply"
+8. Wait 8–10 minutes for build to finish
+
+══════════════════════════════════════════════
+STEP 3 — Verify it worked
+══════════════════════════════════════════════
+Open: https://deadlink.onrender.com/api/health
+
+✅ CORRECT (DEADLINK is live):
+   {"status":"ok","service":"DEADLINK","timestamp":"..."}
+
+❌ STILL WRONG (placeholder still running):
+   Cannot GET /api/health
+   OR {"message":"Server is running good"}
+
+If still wrong:
+  - In Render → deadlink service → Events tab
+  - Check latest deploy shows commit from juliangudaites/Deadlink
+  - Check Logs tab — must say "DEADLINK API running"
+  - If Logs don't say DEADLINK, the service is still wrong
+
+══════════════════════════════════════════════
+STEP 4 — Set remaining env vars (optional)
+══════════════════════════════════════════════
+Render → deadlink → Environment:
+
+  STRIPE_SECRET_KEY      = sk_test_... (from Stripe)
+  STRIPE_WEBHOOK_SECRET  = whsec_... (after webhook setup)
+  BITCOIN_TIP_ADDRESS    = your BTC address (optional)
+  VITE_PLAUSIBLE_DOMAIN  = deadlink.onrender.com (optional)
+
+Then Manual Deploy → Deploy latest commit.
+
+══════════════════════════════════════════════
+STEP 5 — Stripe webhook (after site works)
+══════════════════════════════════════════════
+Stripe Dashboard → Webhooks → Add endpoint:
+  URL: https://deadlink.onrender.com/api/stripe/webhook
+  Event: checkout.session.completed
+
+Live site: https://deadlink.onrender.com
+Admin:     https://deadlink.onrender.com/admin

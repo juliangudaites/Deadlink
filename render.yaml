@@ -31,4 +31,4 @@ services:
       - key: VITE_PLAUSIBLE_DOMAIN
         sync: false
       - key: VITE_GA4_MEASUREMENT_ID
-        sync: false
+        value: G-X1YHBZ5FN3

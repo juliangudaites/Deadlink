@@ -1,5 +1,5 @@
 const PLAUSIBLE_DOMAIN = import.meta.env.VITE_PLAUSIBLE_DOMAIN as string | undefined;
-const GA4_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID as string | undefined;
+export const GA4_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID || 'G-X1YHBZ5FN3';
 
 let initialized = false;
 
@@ -12,6 +12,10 @@ function loadScript(src: string, attrs: Record<string, string> = {}) {
   document.head.appendChild(s);
 }
 
+function hasGtag() {
+  return typeof window.gtag === 'function';
+}
+
 export function initAnalytics() {
   if (initialized || typeof window === 'undefined') return;
   initialized = true;
@@ -22,24 +26,14 @@ export function initAnalytics() {
       'data-domain': PLAUSIBLE_DOMAIN.trim(),
     });
   }
-
-  if (GA4_ID?.trim()) {
-    loadScript(`https://www.googletagmanager.com/gtag/js?id=${GA4_ID.trim()}`);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag(...args: unknown[]) {
-      window.dataLayer!.push(args);
-    };
-    window.gtag('js', new Date());
-    window.gtag('config', GA4_ID.trim(), { send_page_view: false });
-  }
 }
 
 export function trackPageView(path: string, title?: string) {
   if (PLAUSIBLE_DOMAIN?.trim() && window.plausible) {
     window.plausible('pageview', { u: path });
   }
-  if (GA4_ID?.trim() && window.gtag) {
-    window.gtag('event', 'page_view', {
+  if (hasGtag()) {
+    window.gtag!('event', 'page_view', {
       page_path: path,
       page_title: title || document.title,
     });
@@ -50,8 +44,8 @@ export function trackEvent(name: string, props?: Record<string, string | number>
   if (PLAUSIBLE_DOMAIN?.trim() && window.plausible) {
     window.plausible(name, { props });
   }
-  if (GA4_ID?.trim() && window.gtag) {
-    window.gtag('event', name, props);
+  if (hasGtag()) {
+    window.gtag!(name, props);
   }
 }
 

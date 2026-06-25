@@ -1,73 +1,89 @@
-DEADLINK IS NOT DEPLOYED — FIX IN 5 MINUTES
-===========================================
+DEADLINK DEPLOY — READ THIS CAREFULLY
+=====================================
 
-You see:  {"message":"Server is running good"}
-That is a Render PLACEHOLDER app — NOT your DEADLINK code.
+NO — you do NOT need localhost running for Render.
+Your PC can be off. Local servers do NOT affect the live site.
+Multiple localhost tabs are unrelated to this problem.
 
-Proof: https://deadlink.onrender.com/api/health → "Cannot GET /api/health"
-Real DEADLINK always has /api/health with "service":"DEADLINK".
+THE REAL PROBLEM
+----------------
+https://deadlink.onrender.com is STILL serving a placeholder app:
+  {"message":"Server is running good"}
 
-YOU MUST DELETE THE OLD SERVICE AND RECREATE IT.
-Editing settings on the wrong service will NOT fix this.
+That response is NOT in your DEADLINK code. Your GitHub repo is correct.
+Render is either:
+  A) Not deploying your repo to that URL, OR
+  B) You are opening the wrong URL (old service still exists)
+
+We changed the service name to force a NEW URL:
+  https://deadlink-site.onrender.com
 
 ══════════════════════════════════════════════
-STEP 1 — Delete the broken service
+STEP 1 — Clean slate on Render
 ══════════════════════════════════════════════
 1. Go to https://dashboard.render.com
-2. Click your "deadlink" web service
-3. Settings → scroll to bottom → Delete Web Service
-4. Type the service name to confirm → Delete
+2. Delete EVERY web service with "deadlink" in the name
+   (deadlink, deadlink-web, deadlink-xxx — delete ALL)
+3. Confirm each is gone from the dashboard
 
 ══════════════════════════════════════════════
-STEP 2 — Deploy from GitHub (Blueprint)
+STEP 2 — Blueprint deploy (fresh)
 ══════════════════════════════════════════════
-1. Click "New +" (top right)
-2. Choose "Blueprint"
-3. Connect GitHub if asked
-4. Select repo: juliangudaites/Deadlink
-5. Render reads render.yaml automatically
-6. When prompted, set these TWO required secrets:
-     ADMIN_PIN        = pick a strong PIN (e.g. 8+ digits)
+1. New + → Blueprint
+2. Repo MUST be: juliangudaites/Deadlink  (capital D)
+3. Click Apply
+4. Set when prompted:
+     ADMIN_PIN        = your admin PIN
      ENCRYPTION_KEY   = long random passphrase (32+ chars)
-7. Click "Apply"
-8. Wait 8–10 minutes for build to finish
+5. Wait until status shows "Live" (8-10 min)
 
 ══════════════════════════════════════════════
-STEP 3 — Verify it worked
+STEP 3 — Use the URL from YOUR dashboard
 ══════════════════════════════════════════════
-Open: https://deadlink.onrender.com/api/health
+Do NOT guess the URL. On the service page, copy the link Render shows.
 
-✅ CORRECT (DEADLINK is live):
-   {"status":"ok","service":"DEADLINK","timestamp":"..."}
+It should be:
+  https://deadlink-site.onrender.com
 
-❌ STILL WRONG (placeholder still running):
+Test THIS exact URL:
+  https://deadlink-site.onrender.com/api/health
+
+✅ WORKING:
+   {"status":"ok","service":"DEADLINK",...}
+
+❌ STILL BROKEN:
    Cannot GET /api/health
    OR {"message":"Server is running good"}
 
-If still wrong:
-  - In Render → deadlink service → Events tab
-  - Check latest deploy shows commit from juliangudaites/Deadlink
-  - Check Logs tab — must say "DEADLINK API running"
-  - If Logs don't say DEADLINK, the service is still wrong
+══════════════════════════════════════════════
+STEP 4 — If still broken, check these 3 things
+══════════════════════════════════════════════
+On Render → your deadlink-site service:
+
+1. EVENTS tab
+   Latest deploy must show commit from juliangudaites/Deadlink
+   Status must be "Deploy live" (not "Build failed")
+
+2. LOGS tab (scroll to bottom after deploy)
+   Must contain: "DEADLINK API running"
+   Must contain: "Frontend build: OK"
+   If logs show something else → wrong code is running
+
+3. SETTINGS tab
+   Repository: juliangudaites/Deadlink
+   Branch: main
+   Root Directory: (BLANK)
+   Build Command:
+     npm install --prefix server && npm install --prefix client --include=dev && npm run build --prefix client
+   Start Command:
+     node index.js
 
 ══════════════════════════════════════════════
-STEP 4 — Set remaining env vars (optional)
+STEP 5 — Send me these if it still fails
 ══════════════════════════════════════════════
-Render → deadlink → Environment:
+Copy/paste from Render:
+  - The exact URL shown on your service page
+  - Last 10 lines from the Logs tab
+  - Whether Events says "Build failed" or "Deploy live"
 
-  STRIPE_SECRET_KEY      = sk_test_... (from Stripe)
-  STRIPE_WEBHOOK_SECRET  = whsec_... (after webhook setup)
-  BITCOIN_TIP_ADDRESS    = your BTC address (optional)
-  VITE_PLAUSIBLE_DOMAIN  = deadlink.onrender.com (optional)
-
-Then Manual Deploy → Deploy latest commit.
-
-══════════════════════════════════════════════
-STEP 5 — Stripe webhook (after site works)
-══════════════════════════════════════════════
-Stripe Dashboard → Webhooks → Add endpoint:
-  URL: https://deadlink.onrender.com/api/stripe/webhook
-  Event: checkout.session.completed
-
-Live site: https://deadlink.onrender.com
-Admin:     https://deadlink.onrender.com/admin
+Admin (after site works): https://deadlink-site.onrender.com/admin

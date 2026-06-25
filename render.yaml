@@ -1,7 +1,7 @@
-# DEADLINK on Render — permanent URL: https://deadlink.onrender.com
+# DEADLINK on Render — live URL: https://deadlink-site.onrender.com
 services:
   - type: web
-    name: deadlink
+    name: deadlink-site
     runtime: node
     plan: free
     buildCommand: npm install --prefix server && npm install --prefix client --include=dev && npm run build --prefix client
@@ -13,7 +13,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: PUBLIC_APP_URL
-        value: https://deadlink.onrender.com
+        value: https://deadlink-site.onrender.com
       - key: FREE_CREATES_PER_DAY
         value: "3"
       - key: ADMIN_PIN
@@ -27,7 +27,7 @@ services:
       - key: BITCOIN_TIP_ADDRESS
         sync: false
       - key: VITE_PUBLIC_SITE_URL
-        value: https://deadlink.onrender.com
+        value: https://deadlink-site.onrender.com
       - key: VITE_PLAUSIBLE_DOMAIN
         sync: false
       - key: VITE_GA4_MEASUREMENT_ID

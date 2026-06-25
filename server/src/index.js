@@ -23,7 +23,7 @@ const clientDist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '.
 app.listen(config.port, () => {
   console.log(`DEADLINK API running on http://localhost:${config.port}`);
   console.log(`Frontend build: ${existsSync(clientDist) ? 'OK' : 'MISSING'} (${clientDist})`);
-  console.log(`Production: https://deadlink.onrender.com`);
+  console.log(`Production: https://deadlink-site.onrender.com`);
   console.log(`Admin portal: /admin`);
   console.log(`Bitcoin: ${bitcoinOn ? 'ENABLED' : 'disabled'}`);
   console.log(`Stripe: ${isStripeConfigured() ? 'ENABLED' : 'disabled'}`);

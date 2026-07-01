@@ -32,7 +32,7 @@ export const LEARN_PAGES: Record<string, LearnPage> = {
       },
     ],
     faq: [
-      { q: 'Is DEADLINK free?', a: 'Yes — 3 links per day per IP, no account.' },
+      { q: 'Is DEADLINK free?', a: 'Yes — unlimited links, no account.' },
       { q: 'Can recipients view twice?', a: 'No on burn-on-view mode. Timer mode allows views until expiry.' },
       { q: 'Is it encrypted?', a: 'Yes. AES-256-GCM server-side with keys from environment.' },
     ],
@@ -60,8 +60,8 @@ export const LEARN_PAGES: Record<string, LearnPage> = {
       },
     ],
     faq: [
-      { q: 'Do I need an account?', a: 'No. Anonymous create with IP rate limits on free tier.' },
-      { q: 'What can I share?', a: 'Text or small files — never illegal content.' },
+      { q: 'Do I need an account?', a: 'No. Anonymous create with unlimited links on the free tier.' },
+      { q: 'What can I share?', a: 'Text up to 50K chars or files up to 25MB — never illegal content.' },
     ],
     related: ['send-password-securely', 'privnote-alternative', 'security'],
   },

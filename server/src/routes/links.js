@@ -95,13 +95,15 @@ router.post('/create', createLimiter, upload.single('file'), (req, res) => {
       }
     }
   } else {
-    const daily = countIpCreatesToday(ipHash);
-    const limit = config.freeCreatesPerDay || caps.linksPerDayIp || 3;
-    if (daily >= limit) {
-      return res.status(429).json({
-        error: `Free limit: ${limit} links per 24h per IP`,
-        code: 'RATE_LIMIT',
-      });
+    const dailyLimit = config.freeCreatesPerDay ?? caps.linksPerDayIp ?? -1;
+    if (dailyLimit > 0) {
+      const daily = countIpCreatesToday(ipHash);
+      if (daily >= dailyLimit) {
+        return res.status(429).json({
+          error: `Free limit: ${dailyLimit} links per 24h per IP`,
+          code: 'RATE_LIMIT',
+        });
+      }
     }
   }
 

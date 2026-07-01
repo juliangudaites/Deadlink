@@ -70,7 +70,7 @@ export function PlansPanel({ open, onClose, onBuyTier }: PlansPanelProps) {
         <article className="dl-plan" style={{ marginBottom: 12 }}>
           <h3>FREE</h3>
           <p className="dl-plan__price">$0</p>
-          <ul><li>3 links/day per IP</li><li>2K text · 1MB file</li><li>Burn on view or timer</li></ul>
+          <ul><li>Unlimited links</li><li>50K text · 25MB file</li><li>Burn on view or timer</li></ul>
         </article>
 
         <div className="dl-tier-grid">

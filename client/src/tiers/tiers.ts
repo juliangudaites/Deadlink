@@ -17,9 +17,9 @@ export interface TierCaps {
 export const FREE_CAPS: TierCaps = {
   label: 'FREE',
   linksPerMonth: 0,
-  linksPerDayIp: 3,
-  maxTextChars: 2000,
-  maxFileBytes: 1_000_000,
+  linksPerDayIp: -1,
+  maxTextChars: 50000,
+  maxFileBytes: 25_000_000,
   customSlug: false,
   password: true,
   viewCounter: false,

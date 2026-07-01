@@ -10,9 +10,9 @@ export const TIER_CAPS = {
   free: {
     label: 'FREE',
     linksPerMonth: 0,
-    linksPerDayIp: 3,
-    maxTextChars: 2000,
-    maxFileBytes: 1_000_000,
+    linksPerDayIp: -1,
+    maxTextChars: 50000,
+    maxFileBytes: 25_000_000,
     customSlug: false,
     password: true,
     viewCounter: false,
@@ -22,7 +22,7 @@ export const TIER_CAPS = {
   },
   shadow: {
     label: 'SHADOW',
-    linksPerMonth: 50,
+    linksPerMonth: -1,
     linksPerDayIp: 0,
     maxTextChars: 10000,
     maxFileBytes: 10_000_000,

@@ -10,7 +10,9 @@ export const config = {
   adminPin: process.env.ADMIN_PIN || '1373',
   encryptionKey: process.env.ENCRYPTION_KEY || '',
   linksPath: process.env.LINKS_PATH || './data/links.json',
-  freeCreatesPerDay: Number(process.env.FREE_CREATES_PER_DAY) || 3,
+  freeCreatesPerDay: process.env.FREE_CREATES_PER_DAY != null
+    ? Number(process.env.FREE_CREATES_PER_DAY)
+    : -1,
   bitcoinTipAddress: process.env.BITCOIN_TIP_ADDRESS || '',
   btcpayUrl: process.env.BTCPAY_URL || '',
   btcpayStoreId: process.env.BTCPAY_STORE_ID || '',

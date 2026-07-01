@@ -7,7 +7,7 @@ const FAQ = [
   { q: 'What is a dead link?', a: 'A one-time secret URL. Open it once (or until the timer ends), then it is permanently destroyed.' },
   { q: 'Can I see my secret again?', a: 'No. Creators never get a preview. Recipients get one view.' },
   { q: 'Is it encrypted?', a: 'Yes. AES-256-GCM at rest. Destroyed on burn — no logs of content.' },
-  { q: 'Free limits?', a: '3 creates per IP per 24 hours. 2,000 chars or 1MB file.' },
+  { q: 'Free limits?', a: 'Unlimited links. Up to 50,000 chars or 25MB files.' },
   { q: 'Paid tiers?', a: 'SHADOW, VOID, SPECTRE — more links, bigger files, custom slugs, API on SPECTRE.' },
 ];
 

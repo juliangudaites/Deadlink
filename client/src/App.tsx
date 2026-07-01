@@ -70,7 +70,7 @@ const HOME_FAQ_LD = {
       '@type': 'FAQPage',
       mainEntity: [
         { '@type': 'Question', name: 'What is DEADLINK?', acceptedAnswer: { '@type': 'Answer', text: 'A one-time secret link service. Share a URL, recipient views once, then the secret is destroyed.' } },
-        { '@type': 'Question', name: 'Is DEADLINK free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — 3 links per day per IP without an account.' } },
+        { '@type': 'Question', name: 'Is DEADLINK free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — unlimited links without an account.' } },
         { '@type': 'Question', name: 'Are secrets encrypted?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. AES-256-GCM at rest, HTTPS in transit, deleted on burn.' } },
         { '@type': 'Question', name: 'Privnote alternative?', acceptedAnswer: { '@type': 'Answer', text: 'DEADLINK offers files, timers, passwords, and a modern mobile UI.' } },
       ],

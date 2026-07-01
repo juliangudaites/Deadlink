@@ -95,7 +95,7 @@ router.post('/create', createLimiter, upload.single('file'), (req, res) => {
       }
     }
   } else {
-    const dailyLimit = config.freeCreatesPerDay ?? caps.linksPerDayIp ?? -1;
+    const dailyLimit = caps.linksPerDayIp ?? config.freeCreatesPerDay ?? -1;
     if (dailyLimit > 0) {
       const daily = countIpCreatesToday(ipHash);
       if (daily >= dailyLimit) {

@@ -55,7 +55,7 @@ function tierCatalog() {
     payment: isStripeConfigured() ? 'Bitcoin or card' : 'Bitcoin only',
     tagline:
       id === 'shadow'
-        ? '50 links/mo · custom slug · 10MB'
+        ? 'Unlimited links · custom slug · 10MB'
         : id === 'void'
           ? 'Unlimited links · 25MB · view counter'
           : 'API key · 100MB · team seats · webhooks',
@@ -74,7 +74,7 @@ router.get('/catalog', (_req, res) => {
       name: 'FREE',
       price: 'Free',
       caps: TIER_CAPS.free,
-      features: ['3 links/day', '2K text · 1MB file', 'Burn on view or timer', 'Optional password'],
+      features: ['Unlimited links', '50K text · 25MB file', 'Burn on view or timer', 'Optional password'],
     },
     paidTiers: tierCatalog(),
     burnOptions: BURN_TIMER_OPTIONS,
